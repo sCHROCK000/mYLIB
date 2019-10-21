@@ -1,0 +1,28 @@
+#######################################
+# Syntax Coloring ZLG7290
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+ZLG7290	KEYWORD1	ZLG7290
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+begin	KEYWORD2
+clear	KEYWORD2
+WriteReg	KEYWORD2
+ReadReg	KEYWORD2
+Command	KEYWORD2
+SegOnOff	KEYWORD2
+Download	KEYWORD2
+displayNum	KEYWORD2
+getKey	KEYWORD2
+setMatrixXY	KEYWORD2
+writeMatrix	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################

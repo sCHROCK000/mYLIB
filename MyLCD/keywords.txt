@@ -1,0 +1,22 @@
+#######################################
+# Syntax Coloring MyLCD1602
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+MyLCD1602	KEYWORD1	MyLCD1602
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+begin	KEYWORD2
+clear	KEYWORD2
+writeCGRAM	KEYWORD2
+displayCGRAM	KEYWORD2
+LcdDisplay	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
