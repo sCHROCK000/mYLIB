@@ -14,14 +14,11 @@ MyLCD1602 lcd (SCL, SDA);
 void setup()
 {
 	lcd.begin();
-	lcd.clear();
 
-	lcd.LcdDisplay(1,1, "Hello World!");
-	delay(1000);
 	lcd.clear();
-	lcd.LcdDisplay(2, 1, "Schrock000!");
-	delay(1000);
-	lcd.clear();
+	delay(100);
+	lcd.LcdDisplay(1, 1, "Hello World!    ");
+	lcd.LcdDisplay(2, 1, "     ----Schrock");
 }
 
 

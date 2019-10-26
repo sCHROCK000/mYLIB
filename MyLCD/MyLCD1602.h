@@ -6,7 +6,7 @@
 #define		u16				unsigned int
 
 #define		SlaveAddr		0x78
-#define		delayTime		20
+#define		delayTime		5
 
 class MyLCD1602 {
 public:

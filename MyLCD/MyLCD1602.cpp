@@ -36,48 +36,51 @@ void MyLCD1602::clear() {
 
 void MyLCD1602::iic_start() {
 	digitalWrite(_sclPin, HIGH);
-	delayMicroseconds(delayTime);
+	//delayMicroseconds(delayTime);
 	digitalWrite(_sdaPin, HIGH);
-	delayMicroseconds(delayTime);
-	digitalWrite(_sclPin, LOW);
+	//delayMicroseconds(delayTime);
+	digitalWrite(_sdaPin, LOW);
 };
 
 void MyLCD1602::iic_stop() {
 	digitalWrite(_sclPin, HIGH);
-	delayMicroseconds(delayTime);
+	//delayMicroseconds(delayTime);
 	digitalWrite(_sdaPin, LOW);
-	delayMicroseconds(delayTime);
-	digitalWrite(_sclPin, LOW);
+	//delayMicroseconds(delayTime);
+	digitalWrite(_sdaPin, HIGH);
 };
 
 void MyLCD1602::iic_write(u8 data) {
 	int i;
+	digitalWrite(_sclPin, LOW);
 	for (i = 0; i < 8; i++)
 	{
-		digitalWrite(_sclPin, LOW);
+		
 		if (data & 0x80)
 			digitalWrite(_sdaPin, HIGH);
 		else
 			digitalWrite(_sdaPin, LOW);
 		digitalWrite(_sclPin, HIGH);
-		delayMicroseconds(delayTime);
+		//delayMicroseconds(delayTime);
 		digitalWrite(_sclPin, LOW);
-		delayMicroseconds(delayTime);
+		//delayMicroseconds(delayTime);
 		data <<= 1;
 	}
-	
+	digitalWrite(_sdaPin, LOW);
+	digitalWrite(_sclPin, HIGH);
+	digitalWrite(_sclPin, LOW);
 };
 
 void MyLCD1602::initLCD() {
-	iic_start();
+	delay(100);
 
+	iic_start();
 	iic_write(SlaveAddr);
 	iic_write(0x00);
 	iic_write(0x38);
 	iic_write(0x0c);
 	iic_write(0x01);
 	iic_write(0x06);
-
 	iic_stop();
 }
 
@@ -111,11 +114,9 @@ void MyLCD1602::displayCGRAM() {
 	{
 		iic_write(0x01);
 	}
-
 	iic_stop();
 
 	iic_start();
-
 	iic_write(SlaveAddr);
 	iic_write(0x80);
 	iic_write(0xc0);
@@ -130,18 +131,19 @@ void MyLCD1602::displayCGRAM() {
 
 void MyLCD1602::LcdDisplay(int y, int x, const char *p) {
 	int i;
-
+	int ssize = sizeof(p);
+	char *pstring = const_cast<char*>(p);
+	
 	iic_start();
-
 	iic_write(SlaveAddr);
 	iic_write(0x80);
 	iic_write(0x80+(y-1)*0x40+(x-1));
 	iic_write(0x40);
+	//memset(pstring, 0, 16);
 	for (i = 0; i < 16; i++)
 	{
 		iic_write(*p);
 		p++;
 	}
-
 	iic_stop();
 }
